@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "name":" ไส้กรอกรมควัน",
+        "price": 55,
+        "image": "images/1.jpg"
+    },
+    {
+        "id": 2,
+        "name":" ใบเตยเค้ก",
+        "price": 35,
+        "image": "images/2.jpg"
+    },
+    {
+        "id": 3,
+        "name":" เบอร์เกอร์หมู",
+        "price": 36,
+        "image": "images/3.jpg"
+    },
+    {
+        "id": 4,
+        "name":" เปาลาวาไข่เค็ม",
+        "price": 27,
+        "image": "images/4.jpg"
+    },
+    {
+        "id": 5,
+        "name":" วาฟเฟิลครีมโอวันติน",
+        "price": 32,
+        "image": "images/5.jpg"
+    },
+    {
+        "id": 6,
+        "name":" ดับเบิ้ลครัวซองค์ไส้กรอกชีส",
+        "price": 29,
+        "image": "images/6.jpg"
+    },
+    {
+        "id": 7,
+        "name":" บิ๊กเปาหมูสับไข่เค็ม",
+        "price": 20,
+        "image": "images/7.jpg"
+    },
+    {
+        "id": 8,
+        "name":" สาหร่ายห่อกุ้ง",
+        "price": 24,
+        "image": "images/8.jpg"
+    }
+
+]
