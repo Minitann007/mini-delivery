@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Two Columns Layout</title>
+    <title>inperson</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
         body {
@@ -38,16 +38,12 @@
             font-size: 120%;
             color: rgb(72, 59, 59);
         }
-        .container {
-            display: flex;
-            border: 1px solid #ccc;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin: 20px;
+        a {
+            font-size: 110%;
         }
         .column {
             flex: 1;
-            padding: 10px;
+            padding: 5px;
             box-sizing: border-box;
         }
         .item {
@@ -65,80 +61,38 @@
         }
         .item video {
             max-width: 100%;
-            width: 200px;
             height: 200px;
             border-radius: 10px;
-        }
-        .button button {
-            padding: 10px 20px;
-            color: #fff;
-            background-color: #6a3da1;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-        .button button:hover {
-            background-color: #5a3191;
-        }
-        .text {
-            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <nav>
         <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="index.html">Products</a></li>
-            <li><a href="inperson.html">In person</a></li>
-            <li><a href="login.html">Log in</a></li>
+            <li><a href="home.html">หน้าหลัก</a></li>
+            <li><a href="index.html">สินค้า</a></li>
+            <li><a href="inperson.html">หน้าร้านสะดวกซื้อ</a></li>
+            <li><a href="login.html">เข้าสู่ระบบ</a></li>
         </ul>
     </nav>
     <h1>ตัวช่วยสื่อสารหน้าร้านสะดวกซื้อพื้นฐาน</h1>
-    <div class="container">
-        <div class="column">
-            <div class="item">
-                <video controls poster="inperson_img_vdo/ช้อนส้อม.jpg" src="inperson_img_vdo/1.mp4" alt="sign_ช้อนส้อม" type="video/mp4"></video>
-            </div>
-            <div class="item">
-                <video controls poster="inperson_img_vdo/หวานปกติ.jpg" src="inperson_img_vdo/2.mp4" alt="sign_หวานปกติ" type="video/mp4"></video>
-            </div>
-            <div class="item">
-                <video controls poster="inperson_img_vdo/หวานน้อย.jpg" src="inperson_img_vdo/3.mp4" alt="sign_หวานน้อย" type="video/mp4"></video>
-            </div>
-            <div class="item">
-                <video controls poster="inperson_img_vdo/หวานมาก.jpg" src="inperson_img_vdo/4.mp4" alt="sign_หวานมาก" type="video/mp4"></video>
-            </div>
+    <div class="column">
+        <a>ขอช้อน-ส้อมด้วยค่ะ</a>
+        <div class="item">
+            <video controls poster="inperson_img_vdo/ช้อนส้อม.jpg" src="inperson_img_vdo/1.mp4" alt="sign_ช้อนส้อม" type="video/mp4"></video>
         </div>
-        <div class="column">
-            <div class="item">
-                <div class="button">
-                    <button onclick="playAudio('voice1')">ขอช้อน-ส้อมด้วยค่ะ</button>
-                    <audio id="voice1" src="audio/voice1.mp3"></audio></div>
-            </div>
-            <div class="item">
-                <div class="button">
-                    <button onclick="playAudio('voice2')">เอาหวานปกติค่ะ</button>
-                    <audio id="voice2" src="audio/voice2.mp3"></audio></div>
-            </div>
-            <div class="item">
-                <div class="button">
-                    <button onclick="playAudio('voice3')">เอาหวานน้อยค่ะ</button>
-                    <audio id="voice3" src="audio/voice3.mp3"></audio></div>
-            </div>
-            <div class="item">
-                <div class="button">
-                    <button onclick="playAudio('voice4')">เอาหวานมากค่ะ</button>
-                    <audio id="voice4" src="audio/voice4.mp3"></audio></div>
-            </div>
+        <a>เอาหวานน้อยค่ะ</a>
+        <div class="item">
+            <video controls poster="inperson_img_vdo/หวานน้อย.jpg" src="inperson_img_vdo/2.mp4" alt="sign_หวานน้อย" type="video/mp4"></video>
+        </div>
+        <a>เอาหวานปกติค่ะ</a>
+        <div class="item">
+            <video controls poster="inperson_img_vdo/หวานปกติ.jpg" src="inperson_img_vdo/3.mp4" alt="sign_หวานปกติ" type="video/mp4"></video>
+        </div>
+        <a>เอาหวานมากค่ะ</a>
+        <div class="item">
+            <video controls poster="inperson_img_vdo/หวานมาก.jpg" src="inperson_img_vdo/4.mp4" alt="sign_หวานมาก" type="video/mp4"></video>
         </div>
     </div>
-    <script>
-        function playAudio(id) {
-            var audio = document.getElementById(id);
-            audio.play();
-        }
-    </script>
 </body>
 </html>

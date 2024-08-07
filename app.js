@@ -7,17 +7,47 @@ let closeCart = document.querySelector('.close');
 let products = [];
 let cart = [];
 
-
 iconCart.addEventListener('click', () => {
     body.classList.toggle('showCart');
-})
+});
 closeCart.addEventListener('click', () => {
     body.classList.toggle('showCart');
-})
+});
+
+const showNotification = (message, videoUrl) => {
+    let notification = document.createElement('div');
+    notification.classList.add('notification');
+
+    let notificationContent = `
+        <div class="notification-content">
+            <p>${message}</p>
+            <video controls>
+                <source src="${videoUrl}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    `;
+
+    notification.innerHTML = notificationContent;
+
+    let closeBtn = document.createElement('button');
+    closeBtn.innerText = 'ปิด';
+    closeBtn.classList.add('close-notification');
+    closeBtn.addEventListener('click', () => {
+        notification.remove();
+    });
+
+    notification.appendChild(closeBtn);
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.remove();
+    }, 10000); // Remove the notification after 10 seconds
+};
 
 const addDataToHTML = () => {
     listProductHTML.innerHTML = '';
-    if(products.length > 0){
+    if (products.length > 0) {
         products.forEach(product => {
             let newProduct = document.createElement('div');
             newProduct.dataset.id = product.id;
@@ -27,44 +57,55 @@ const addDataToHTML = () => {
                 <h2>${product.name}</h2>
                 <div class="price">$${product.price}</div>
                 <button class="addCart">Add To Cart</button>`;
-                listProductHTML.appendChild(newProduct);
-            });
-        }
-}
+            listProductHTML.appendChild(newProduct);
+        });
+    }
+};
+
 listProductHTML.addEventListener('click', (event) => {
-        let positionClick = event.target;
-        if(positionClick.classList.contains('addCart')){
-            let id_product = positionClick.parentElement.dataset.id;
-            addToCart(id_product);
-        }
-    })
+    let positionClick = event.target;
+    if (positionClick.classList.contains('addCart')) {
+        let id_product = positionClick.parentElement.dataset.id;
+        addToCart(id_product);
+    }
+});
+
 const addToCart = (product_id) => {
+    if (product_id == 4) {
+        showNotification("เปาลาวาไข่เค็ม หมด! กรุณาเลือกสินค้าใหม่ค่ะ", "VDO/noti.mp4");
+        return;
+    }
+
     let positionThisProductInCart = cart.findIndex((value) => value.product_id == product_id);
-    if(cart.length <= 0){
+
+    if (cart.length <= 0) {
         cart = [{
             product_id: product_id,
             quantity: 1
         }];
-    }else if(positionThisProductInCart < 0){
+    } else if (positionThisProductInCart < 0) {
         cart.push({
             product_id: product_id,
             quantity: 1
         });
-    }else{
+    } else {
         cart[positionThisProductInCart].quantity = cart[positionThisProductInCart].quantity + 1;
     }
+
     addCartToHTML();
     addCartToMemory();
-}
+};
+
 const addCartToMemory = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
-}
+};
+
 const addCartToHTML = () => {
     listCartHTML.innerHTML = '';
     let totalQuantity = 0;
-    if(cart.length > 0){
+    if (cart.length > 0) {
         cart.forEach(item => {
-            totalQuantity = totalQuantity +  item.quantity;
+            totalQuantity = totalQuantity + item.quantity;
             let newItem = document.createElement('div');
             newItem.classList.add('item');
             newItem.dataset.id = item.product_id;
@@ -73,11 +114,11 @@ const addCartToHTML = () => {
             let info = products[positionProduct];
             listCartHTML.appendChild(newItem);
             newItem.innerHTML = `
-            <div class="image">
+                <div class="image">
                     <img src="${info.image}">
                 </div>
                 <div class="name">
-                ${info.name}
+                    ${info.name}
                 </div>
                 <div class="totalPrice">$${info.price * item.quantity}</div>
                 <div class="quantity">
@@ -86,25 +127,26 @@ const addCartToHTML = () => {
                     <span class="plus">></span>
                 </div>
             `;
-        })
+        });
     }
     iconCartSpan.innerText = totalQuantity;
-}
+};
 
 listCartHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
-    if(positionClick.classList.contains('minus') || positionClick.classList.contains('plus')){
+    if (positionClick.classList.contains('minus') || positionClick.classList.contains('plus')) {
         let product_id = positionClick.parentElement.parentElement.dataset.id;
         let type = 'minus';
-        if(positionClick.classList.contains('plus')){
+        if (positionClick.classList.contains('plus')) {
             type = 'plus';
         }
         changeQuantityCart(product_id, type);
     }
-})
+});
+
 const changeQuantityCart = (product_id, type) => {
     let positionItemInCart = cart.findIndex((value) => value.product_id == product_id);
-    if(positionItemInCart >= 0){
+    if (positionItemInCart >= 0) {
         let info = cart[positionItemInCart];
         switch (type) {
             case 'plus':
@@ -115,7 +157,7 @@ const changeQuantityCart = (product_id, type) => {
                 let changeQuantity = cart[positionItemInCart].quantity - 1;
                 if (changeQuantity > 0) {
                     cart[positionItemInCart].quantity = changeQuantity;
-                }else{
+                } else {
                     cart.splice(positionItemInCart, 1);
                 }
                 break;
@@ -123,7 +165,7 @@ const changeQuantityCart = (product_id, type) => {
     }
     addCartToHTML();
     addCartToMemory();
-}
+};
 
 const initApp = () => {
     // get data product
@@ -134,10 +176,11 @@ const initApp = () => {
         addDataToHTML();
 
         // get data cart from memory
-        if(localStorage.getItem('cart')){
+        if (localStorage.getItem('cart')) {
             cart = JSON.parse(localStorage.getItem('cart'));
             addCartToHTML();
         }
-    })
-}
+    });
+};
+
 initApp();
